@@ -3859,7 +3859,7 @@ section {
     #00ff87    /* loop */
   );
   background-size: 400% 400%;
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: gradientFlow 6s linear infinite;
 }
