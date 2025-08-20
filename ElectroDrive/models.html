@@ -3,49 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Electric Vehicle Models - VoltEdge Motors</title>
-    <meta name="description" content="Explore VoltEdge Motors' complete lineup of electric vehicles. Compare models, specifications, and pricing to find your perfect electric car.">
+    <title>VoltEdge E-Scooter Pro - Araham Motors</title>
+    <link rel="shortcut icon" href="./attached_assets/logo-favicon.png" type="image/png" style="height: 20px;width: 30px;">
+    <meta name="description" content="Experience the VoltEdge E-Scooter Pro - Premium electric scooter with 65km range, fast charging, and cutting-edge technology from Araham Motors.">
     
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="VoltEdge E-Scooter Pro - Araham Motors">
+    <meta property="og:description" content="Premium electric scooter with 65km range, fast charging, and cutting-edge technology.">
+    <meta property="og:type" content="product">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600">
+
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
-    
+    <link rel="icon" type="image/png" href="attached_assets/logo-favicon.png">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Styles -->
-    <link rel="stylesheet" href="assets/css/styles.css">
-    
+    <link rel="stylesheet" href="./assets/css/styles.css">
+
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* Additional Product Page Styles */
+        .product-gallery {
+            position: sticky;
+            top: 100px;
+        }
+        
+        .main-image {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+        }
+        
+        .main-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-3);
+            margin-top: var(--space-4);
+        }
+        
+        .thumbnail {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .thumbnail.active {
+            border-color: var(--brand);
+            box-shadow: 0 0 0 2px var(--brand);
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+        }
+        
+        .color-selector {
+            display: flex;
+            gap: var(--space-3);
+            margin: var(--space-4) 0;
+        }
+        
+        .color-option {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .color-option.active {
+            border-color: var(--brand);
+            transform: scale(1.1);
+        }
+        
+        .color-option::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            transition: border-color 0.3s ease;
+        }
+        
+        .color-option.active::after {
+            border-color: var(--brand);
+        }
+        
+        .variant-selector {
+            margin: var(--space-6) 0;
+        }
+        
+        .variant-option {
+            border: 2px solid var(--gray-300);
+            border-radius: var(--radius-lg);
+            padding: var(--space-4);
+            margin-bottom: var(--space-3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .variant-option.active {
+            border-color: var(--brand);
+            background: rgba(11, 138, 106, 0.05);
+        }
+        
+        .spec-tabs {
+            border-bottom: 2px solid var(--gray-200);
+            margin-bottom: var(--space-8);
+        }
+        
+        .spec-tab {
+            background: none;
+            border: none;
+            padding: var(--space-4) var(--space-6);
+            font-weight: var(--font-weight-medium);
+            color: var(--gray-600);
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .spec-tab.active {
+            color: var(--brand);
+            border-bottom-color: var(--brand);
+        }
+        
+        .spec-content {
+            min-height: 300px;
+        }
+        
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-6);
+        }
+        
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .spec-progress {
+            width: 100%;
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin-top: var(--space-2);
+        }
+        
+        .spec-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--brand), var(--accent));
+            transition: width 0.5s ease;
+        }
+        
+        .breadcrumb-nav {
+            background: var(--gray-100);
+            padding: var(--space-4) 0;
+            margin-top: 70px;
+        }
+        
+        .related-products {
+            background: var(--gray-100);
+            padding: var(--space-16) 0;
+        }
+        
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-base);
+            height: 100%;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .product-card-body {
+            padding: var(--space-5);
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--brand), var(--accent));
+            color: var(--white);
+            padding: var(--space-16) 0;
+        }
+        
+        /* Modal Styles */
+        .inquiry-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            z-index: 1050;
+            padding: var(--space-4);
+        }
+        
+        .inquiry-modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .inquiry-modal.show .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+        
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: var(--space-6);
+            background: var(--brand);
+            color: var(--white);
+            padding: var(--space-4) var(--space-6);
+            border-radius: var(--radius-lg);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 1060;
+        }
+        
+        .toast.show {
+            transform: translateX(0);
+        }
+        
+        @media (max-width: 768px) {
+            .product-gallery {
+                position: static;
+                margin-bottom: var(--space-8);
+            }
+            
+            .spec-tabs {
+                display: flex;
+                overflow-x: auto;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            
+            .spec-tabs::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .spec-tab {
+                white-space: nowrap;
+            }
+        }
+
+        /* kaiftech */
+        /* Header layout (in case your global CSS doesn't set it) */
+
+    </style>
 </head>
 <body>
     <!-- Skip to Content -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
     <!-- Header -->
-    <header class="header" id="header">
+     <header class="header" id="header">
         <div class="container">
             <div class="nav-wrapper">
                 <!-- Logo -->
                 <div class="logo">
-                    <a href="index.html" aria-label="VoltEdge Motors Home">
-                        <span class="logo-text">VoltEdge</span>
+                    <img src="./attached_assets/logo-img-removebg-preview.png" alt="Araham Motors Logo"
+                        style="width: 20%;height: 20%;">
+                    <a href="index.html" aria-label="Araham Motors Home">
+                        <span class="logo-text">Araham Motors</span>
                     </a>
                 </div>
-                
+
                 <!-- Desktop Navigation -->
                 <nav class="nav-desktop" aria-label="Main navigation">
                     <ul class="nav-list">
-                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="index.html" class="nav-link ">Home</a></li>
                         <li><a href="models.html" class="nav-link active">Models</a></li>
                         <li><a href="technology.html" class="nav-link">Technology</a></li>
                         <li><a href="about.html" class="nav-link">About</a></li>
                         <li><a href="contact.html" class="nav-link">Contact</a></li>
                     </ul>
                 </nav>
-                
+
                 <!-- Mobile Hamburger -->
                 <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
                     <span class="hamburger-line"></span>
@@ -54,9 +344,9 @@
                 </button>
             </div>
         </div>
-        
+
         <!-- Mobile Menu Overlay -->
-        <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+       <div class="mobile-menu-overlay" id="mobile-menu-overlay">
             <div class="mobile-menu-content">
                 <nav class="mobile-nav" aria-label="Mobile navigation">
                     <ul class="mobile-nav-list">
@@ -64,7 +354,7 @@
                         <li><a href="models.html" class="mobile-nav-link active">Models</a></li>
                         <li><a href="technology.html" class="mobile-nav-link">Technology</a></li>
                         <li><a href="about.html" class="mobile-nav-link">About</a></li>
-                        <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+                        <li><a href="contact.html" class="mobile-nav-link ">Contact</a></li>
                     </ul>
                     <div class="mobile-menu-footer">
                         <p class="mobile-menu-tagline">Drive Electric. Drive Future.</p>
@@ -79,138 +369,425 @@
             </div>
         </div>
     </header>
-    
+
+
     <!-- Main Content -->
     <main id="main-content">
-        <h1 class="page-title"></h1>
-        <p class="page-subtitle">Discover the perfect electric vehicle for your lifestyle</p>
-        <!-- Page Header -->
-        <section class="hero" style="height: 70vh;">
-            <div class="hero-background">
-                <img src="./attached_assets/image-2.jpg" alt="VoltEdge Motors Electric Vehicle" class="hero-image">
-                <div class="hero-overlay"></div>
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+            <div class="container">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="attached_assets/index_1755611828587.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="attached_assets/models_1755611828588.html">Models</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">VoltEdge E-Scooter Pro</li>
+                </ol>
             </div>
-            <div class="hero-content">
-                <div class="container">
-                    <div class="hero-text">
-                        <h1 class="hero-title">
-                            <span class="hero-title-main">Our Electric Vehicle Models</span>
-                            <!-- <span class="hero-title-sub">Drive Future.</span> -->
-                        </h1>
-                        <p class="hero-description">Discover the perfect electric vehicle for your lifestyle</p>
-                        <!-- <div class="hero-buttons">
-                            <a href="models.html" class="btn btn-primary">Explore Models</a>
-                            <a href="contact.html" class="btn btn-secondary">Book Test Drive</a>
-                        </div> -->
+        </nav>
+
+        <!-- Product Details Section -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row g-5">
+                    <!-- Product Gallery -->
+                    <div class="col-lg-6">
+                        <div class="product-gallery">
+                            <!-- Main Image -->
+                            <div class="main-image" id="mainImage">
+                                <img src="//bmrev.in/cdn/shop/files/Brigadier-LunarGrey.jpg?v=1746423483&width=1080" 
+                                     alt="VoltEdge E-Scooter Pro - Main View" id="mainImageSrc">
+                            </div>
+                            
+                            <!-- Thumbnail Grid -->
+                            <div class="thumbnail-grid">
+                                <div class="thumbnail active" data-image="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600">
+                                    <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150" alt="View 1">
+                                </div>
+                                <div class="thumbnail" data-image="https://images.unsplash.com/photo-1544966503-7cc5ac882d5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600">
+                                    <img src="https://images.unsplash.com/photo-1544966503-7cc5ac882d5d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150" alt="View 2">
+                                </div>
+                                <div class="thumbnail" data-image="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600">
+                                    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150" alt="View 3">
+                                </div>
+                                <div class="thumbnail" data-image="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600">
+                                    <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=150" alt="View 4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Information -->
+                    <div class="col-lg-6">
+                        <div class="product-info">
+                            <!-- Product Header -->
+                            <div class="mb-4">
+                                <div class="d-flex align-items-center mb-2">
+                                    <span class="badge bg-success me-2">New Model</span>
+                                    <div class="d-flex align-items-center">
+                                        <div class="text-warning me-2">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="text-muted small">(4.8) 124 reviews</span>
+                                    </div>
+                                </div>
+
+                                <h1 class="display-5 fw-bold text-dark mb-3">VoltEdge E-Scooter Pro</h1>
+                                <p class="lead text-muted mb-4">Experience the perfect blend of performance and style with our flagship electric scooter. Designed for urban commuters who demand premium quality and cutting-edge technology.</p>
+
+                                <!-- Pricing -->
+                                <div class="mb-4">
+                                    <div class="d-flex align-items-baseline mb-2">
+                                        <span class="display-6 fw-bold text-dark me-3">₹89,999</span>
+                                        <span class="h5 text-muted text-decoration-line-through me-3">₹99,999</span>
+                                        <span class="badge bg-success">Save ₹10,000</span>
+                                    </div>
+                                    <p class="text-muted small">*Ex-showroom price. Government subsidies may apply.</p>
+                                </div>
+                            </div>
+
+                            <!-- Color Selection -->
+                            <div class="mb-4">
+                                <h5 class="fw-semibold mb-3">Choose Color</h5>
+                                <div class="color-selector">
+                                    <div class="color-option active bg-danger" data-color="red" title="Crimson Red"></div>
+                                    <div class="color-option bg-primary" data-color="blue" title="Ocean Blue"></div>
+                                    <div class="color-option bg-dark" data-color="black" title="Midnight Black"></div>
+                                    <div class="color-option bg-light border" data-color="white" title="Pearl White"></div>
+                                </div>
+                                <p class="text-muted small mt-2">Selected: <span id="selectedColor">Crimson Red</span></p>
+                            </div>
+
+                            <!-- Variant Selection -->
+                            <div class="variant-selector">
+                                <h5 class="fw-semibold mb-3">Choose Variant</h5>
+                                <div class="variant-option active" data-variant="standard" data-price="89999">
+                                    <h6 class="mb-1">Standard</h6>
+                                    <p class="text-muted small mb-1">65 km range, 25 km/h top speed</p>
+                                    <p class="text-brand fw-semibold mb-0">₹89,999</p>
+                                </div>
+                                <div class="variant-option" data-variant="pro-max" data-price="109999">
+                                    <h6 class="mb-1">Pro Max</h6>
+                                    <p class="text-muted small mb-1">85 km range, 35 km/h top speed</p>
+                                    <p class="text-brand fw-semibold mb-0">₹1,09,999</p>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="d-grid gap-3 mb-4">
+                                <button class="btn btn-primary btn-lg" id="testDriveBtn">
+                                    <i class="fas fa-calendar-alt me-2"></i>Request Test Drive
+                                </button>
+                                <button class="btn btn-outline-primary btn-lg" id="compareBtn">
+                                    <i class="fas fa-balance-scale me-2"></i>Compare Models
+                                </button>
+                            </div>
+
+                            <!-- Key Features -->
+                            <div class="bg-light rounded p-4">
+                                <h5 class="fw-semibold mb-3">Key Features</h5>
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-bolt text-brand me-2"></i>
+                                            <span class="small fw-medium">65km Range</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-clock text-brand me-2"></i>
+                                            <span class="small fw-medium">4hr Charging</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-tachometer-alt text-brand me-2"></i>
+                                            <span class="small fw-medium">25 km/h Speed</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="d-flex align-items-center">
+                                            <i class="fas fa-shield-alt text-brand me-2"></i>
+                                            <span class="small fw-medium">3yr Warranty</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="scroll-indicator">
-                <div class="scroll-arrow"></div>
             </div>
         </section>
-        
-        <!-- Filters -->
-        <section class="filters-section">
+
+        <!-- Detailed Specifications -->
+        <section class="py-5 bg-white">
             <div class="container">
-                <div class="filters-wrapper">
-                    <div class="filters-header">
-                        <h2 class="filters-title">Find Your Perfect Match</h2>
-                        <button class="mobile-filters-toggle" id="mobile-filters-toggle">
-                            <i class="fas fa-filter"></i>
-                            <span>Filters</span>
-                        </button>
-                    </div>
-                    
-                    <div class="filters" id="filters">
-                        <div class="filter-group">
-                            <label class="filter-label">Body Type</label>
-                            <div class="filter-options">
-                                <button class="filter-btn active" data-filter="all" data-category="bodyType">All</button>
-                                <button class="filter-btn" data-filter="hatchback" data-category="bodyType">Hatchback</button>
-                                <button class="filter-btn" data-filter="sedan" data-category="bodyType">Sedan</button>
-                                <button class="filter-btn" data-filter="suv" data-category="bodyType">SUV</button>
-                            </div>
-                        </div>
-                        
-                        <div class="filter-group">
-                            <label class="filter-label">Range</label>
-                            <div class="filter-options">
-                                <button class="filter-btn active" data-filter="all" data-category="range">All</button>
-                                <button class="filter-btn" data-filter="300-450" data-category="range">300-450km</button>
-                                <button class="filter-btn" data-filter="450-550" data-category="range">450-550km</button>
-                                <button class="filter-btn" data-filter="550+" data-category="range">550km+</button>
-                            </div>
-                        </div>
-                        
-                        <div class="filter-group">
-                            <label class="filter-label">Price Range</label>
-                            <div class="filter-options">
-                                <button class="filter-btn active" data-filter="all" data-category="price">All</button>
-                                <button class="filter-btn" data-filter="under-35k" data-category="price">Under $35k</button>
-                                <button class="filter-btn" data-filter="35k-45k" data-category="price">$35k - $45k</button>
-                                <button class="filter-btn" data-filter="45k+" data-category="price">$45k+</button>
-                            </div>
-                        </div>
-                    </div>
+                <h2 class="text-center display-6 fw-bold mb-5">Detailed Specifications</h2>
+
+                <!-- Specification Tabs -->
+                <div class="spec-tabs d-flex justify-content-center mb-4">
+                    <button class="spec-tab active" data-tab="performance">Performance</button>
+                    <button class="spec-tab" data-tab="battery">Battery</button>
+                    <button class="spec-tab" data-tab="design">Design</button>
+                    <button class="spec-tab" data-tab="safety">Safety</button>
                 </div>
-                
-                <!-- Comparison Bar -->
-                <div class="comparison-bar" id="comparison-bar">
-                    <div class="comparison-content">
-                        <span class="comparison-text">Compare Models</span>
-                        <div class="comparison-count">0 selected</div>
-                        <button class="comparison-btn" id="compare-btn" disabled>Compare</button>
-                        <button class="comparison-clear" id="comparison-clear">Clear</button>
+
+                <!-- Specification Content -->
+                <div class="spec-content">
+                    <!-- Performance Tab -->
+                    <div class="tab-pane active" id="performance">
+                        <div class="row g-5">
+                            <div class="col-md-6">
+                                <div class="spec-item">
+                                    <span class="fw-medium">Top Speed</span>
+                                    <span class="text-brand fw-semibold">25 km/h</span>
+                                </div>
+                                <div class="spec-progress">
+                                    <div class="spec-progress-fill" style="width: 65%"></div>
+                                </div>
+
+                                <div class="spec-item">
+                                    <span class="fw-medium">Range</span>
+                                    <span class="text-brand fw-semibold">65 km</span>
+                                </div>
+                                <div class="spec-progress">
+                                    <div class="spec-progress-fill" style="width: 80%"></div>
+                                </div>
+
+                                <div class="spec-item">
+                                    <span class="fw-medium">Motor Power</span>
+                                    <span class="text-brand fw-semibold">1200W</span>
+                                </div>
+                                <div class="spec-progress">
+                                    <div class="spec-progress-fill" style="width: 90%"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="bg-light rounded p-4">
+                                    <h5 class="fw-semibold mb-3">Performance Highlights</h5>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>BLDC Motor Technology</li>
+                                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Regenerative Braking</li>
+                                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Multiple Riding Modes</li>
+                                        <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Hill Climbing Capability</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Battery Tab -->
+                    <div class="tab-pane" id="battery" style="display: none;">
+                        <div class="row g-5">
+                            <div class="col-md-6">
+                                <div class="bg-light rounded p-4">
+                                    <h5 class="fw-semibold mb-3">Battery Specifications</h5>
+                                    <div class="spec-item">
+                                        <span>Battery Type</span>
+                                        <span class="fw-medium">Lithium-ion</span>
+                                    </div>
+                                    <div class="spec-item">
+                                        <span>Capacity</span>
+                                        <span class="fw-medium">2.5 kWh</span>
+                                    </div>
+                                    <div class="spec-item">
+                                        <span>Charging Time</span>
+                                        <span class="fw-medium">4 hours</span>
+                                    </div>
+                                    <div class="spec-item">
+                                        <span>Battery Life</span>
+                                        <span class="fw-medium">1000+ cycles</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h5 class="fw-semibold mb-3">Charging Options</h5>
+                                <div class="border rounded p-3 mb-3">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fas fa-home text-brand me-2"></i>
+                                        <h6 class="mb-0">Home Charging</h6>
+                                    </div>
+                                    <p class="text-muted small mb-0">Standard 15A plug, 4-5 hours full charge</p>
+                                </div>
+
+                                <div class="border rounded p-3">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fas fa-bolt text-brand me-2"></i>
+                                        <h6 class="mb-0">Fast Charging</h6>
+                                    </div>
+                                    <p class="text-muted small mb-0">DC fast charging, 80% in 2 hours</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Design Tab -->
+                    <div class="tab-pane" id="design" style="display: none;">
+                        <div class="row g-5">
+                            <div class="col-md-6">
+                                <div class="bg-light rounded p-4">
+                                    <h5 class="fw-semibold mb-3">Dimensions & Weight</h5>
+                                    <div class="spec-item">
+                                        <span>Length</span>
+                                        <span class="fw-medium">1840 mm</span>
+                                    </div>
+                                    <div class="spec-item">
+                                        <span>Width</span>
+                                        <span class="fw-medium">680 mm</span>
+                                    </div>
+                                    <div class="spec-item">
+                                        <span>Height</span>
+                                        <span class="fw-medium">1150 mm</span>
+                                    </div>
+                                    <div class="spec-item">
+                                        <span>Kerb Weight</span>
+                                        <span class="fw-medium">95 kg</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <h5 class="fw-semibold mb-3">Design Features</h5>
+                                <div class="mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-palette text-brand me-2 mt-1"></i>
+                                        <div>
+                                            <h6 class="mb-1">Premium Materials</h6>
+                                            <p class="text-muted small mb-0">Aircraft-grade aluminum chassis with carbon fiber accents</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-lightbulb text-brand me-2 mt-1"></i>
+                                        <div>
+                                            <h6 class="mb-1">LED Lighting</h6>
+                                            <p class="text-muted small mb-0">Full LED headlight, taillight, and turn indicators</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="d-flex align-items-start">
+                                        <i class="fas fa-mobile-alt text-brand me-2 mt-1"></i>
+                                        <div>
+                                            <h6 class="mb-1">Smart Display</h6>
+                                            <p class="text-muted small mb-0">7-inch TFT display with smartphone connectivity</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Safety Tab -->
+                    <div class="tab-pane" id="safety" style="display: none;">
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="bg-light rounded p-4 text-center h-100">
+                                    <i class="fas fa-shield-alt text-brand fa-3x mb-3"></i>
+                                    <h5 class="fw-semibold mb-2">Advanced Braking</h5>
+                                    <p class="text-muted small">Combined braking system with regenerative braking for maximum safety</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="bg-light rounded p-4 text-center h-100">
+                                    <i class="fas fa-eye text-brand fa-3x mb-3"></i>
+                                    <h5 class="fw-semibold mb-2">LED Lighting</h5>
+                                    <p class="text-muted small">360-degree LED lighting system for better visibility in all conditions</p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="bg-light rounded p-4 text-center h-100">
+                                    <i class="fas fa-lock text-brand fa-3x mb-3"></i>
+                                    <h5 class="fw-semibold mb-2">Anti-Theft</h5>
+                                    <p class="text-muted small">Smart lock system with GPS tracking and mobile app integration</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- Models Grid -->
-        <section class="models-section">
+
+        <!-- Related Products -->
+        <section class="related-products">
             <div class="container">
-                <div class="models-grid" id="models-grid">
-                    <!-- Models will be dynamically inserted here by JavaScript -->
+                <div class="text-center mb-5">
+                    <h2 class="display-6 fw-bold mb-3">You Might Also Like</h2>
+                    <p class="lead text-muted">Explore our complete range of electric vehicles</p>
                 </div>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250" alt="VoltEdge City Cruiser">
+                            <div class="product-card-body">
+                                <h5 class="fw-semibold mb-2">VoltEdge City Cruiser</h5>
+                                <p class="text-muted small mb-3">Perfect for daily commuting with 45km range</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="h5 text-brand mb-0">₹69,999</span>
+                                    <a href="#" class="btn btn-outline-primary btn-sm">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250" alt="VoltEdge Speed Demon">
+                            <div class="product-card-body">
+                                <h5 class="fw-semibold mb-2">VoltEdge Speed Demon</h5>
+                                <p class="text-muted small mb-3">High-performance model with 95km range</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="h5 text-brand mb-0">₹1,29,999</span>
+                                    <a href="#" class="btn btn-outline-primary btn-sm">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <img src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=250" alt="VoltEdge Compact">
+                            <div class="product-card-body">
+                                <h5 class="fw-semibold mb-2">VoltEdge Compact</h5>
+                                <p class="text-muted small mb-3">Lightweight and agile for urban mobility</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="h5 text-brand mb-0">₹49,999</span>
+                                    <a href="#" class="btn btn-outline-primary btn-sm">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="container text-center">
+                <h2 class="display-6 fw-bold mb-3">Ready to Experience Araham motors?</h2>
+                <p class="lead mb-4">Book a test drive or visit our nearest showroom to experience the future of mobility</p>
+                <!-- <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                    <button class="btn btn-light btn-lg" id="ctaTestDriveBtn">
+                        <i class="fas fa-calendar-alt me-2"></i>Book Test Drive
+                    </button>
+                    <button class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-map-marker-alt me-2"></i>Find Dealer
+                    </button>
+                </div> -->
             </div>
         </section>
     </main>
-    
-    <!-- Model Specs Modal -->
-    <div class="modal" id="specs-modal">
-        <div class="modal-overlay" id="modal-overlay"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modal-title">Model Specifications</h3>
-                <button class="modal-close" id="modal-close" aria-label="Close modal">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body" id="modal-body">
-                <!-- Specs content will be inserted here by JavaScript -->
-            </div>
-        </div>
-    </div>
-    
-    <!-- Comparison Modal -->
-    <div class="modal" id="comparison-modal">
-        <div class="modal-overlay" id="comparison-modal-overlay"></div>
-        <div class="modal-content modal-large">
-            <div class="modal-header">
-                <h3 class="modal-title">Model Comparison</h3>
-                <button class="modal-close" id="comparison-modal-close" aria-label="Close comparison">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="comparison-table" id="comparison-table">
-                    <!-- Comparison table will be inserted here by JavaScript -->
-                </div>
-            </div>
-        </div>
-    </div>
-    
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-gradient"></div>
@@ -218,7 +795,7 @@
             <div class="footer-content">
                 <div class="footer-section footer-brand">
                     <div class="footer-logo">
-                        <span class="logo-text">VoltEdge</span>
+                        <span class="logo-text">Araham Motors</span>
                     </div>
                     <p class="footer-tagline">Drive Electric. Drive Future.</p>
                     <p class="footer-description">Leading the electric revolution with innovative vehicles that combine cutting-edge technology with sustainable design.</p>
@@ -260,32 +837,28 @@
                 </div>
                 
                 <div class="footer-section">
-                    <h3 class="footer-title">Company</h3>
+                    <h3 class="footer-title">Support</h3>
                     <ul class="footer-links">
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="about.html">Leadership</a></li>
-                        <li><a href="about.html">Sustainability</a></li>
-                        <li><a href="contact.html">Careers</a></li>
-                        <li><a href="contact.html">Press</a></li>
-                        <li><a href="contact.html">Investor Relations</a></li>
+                        <li><a href="#">Service Centers</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Support</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h3 class="footer-title">Support</h3>
+                    <h3 class="footer-title">Company</h3>
                     <ul class="footer-links">
-                        <li><a href="contact.html">Customer Support</a></li>
-                        <li><a href="contact.html">Service Centers</a></li>
-                        <li><a href="technology.html">Charging Network</a></li>
-                        <li><a href="technology.html">Software Updates</a></li>
-                        <li><a href="contact.html">Warranty</a></li>
-                        <li><a href="contact.html">Roadside Assistance</a></li>
+                        <li><a href="attached_assets/about_1755611828585.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="attached_assets/contact_1755611828586.html">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-section footer-newsletter">
                     <h3 class="footer-title">Stay Connected</h3>
-                    <p class="newsletter-description">Get the latest news, updates, and exclusive offers from Araham Motors.</p>
+                    <p class="newsletter-description">Get the latest news, updates, and exclusive offers from VoltEdge Motors.</p>
                     
                     <form class="newsletter-form" id="newsletter-form">
                         <div class="form-group">
@@ -303,7 +876,7 @@
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <span>Arahammotors@yahoo.com</span>
+                            <span>info@voltedgemotors.com</span>
                         </div>
                     </div>
                 </div>
@@ -311,7 +884,7 @@
             
             <div class="footer-bottom">
                 <div class="footer-bottom-content">
-                    <p class="copyright">&copy; 2025 Araham Motors. All rights reserved.</p>
+                    <p class="copyright">&copy; 2025 VoltEdge Motors. All rights reserved.</p>
                     <div class="legal-links">
                         <a href="#">Privacy Policy</a>
                         <a href="#">Terms of Service</a>
@@ -322,16 +895,293 @@
             </div>
         </div>
     </footer>
-    
+
+    <!-- Inquiry Modal -->
+    <!-- <div class="inquiry-modal" id="inquiryModal">
+        <div class="modal-content">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="fw-bold mb-0">Request Test Drive</h3>
+                <button type="button" class="btn-close" id="closeModal" aria-label="Close"></button>
+            </div>
+
+            <p class="text-muted mb-4">Schedule a test drive for the <strong>VoltEdge E-Scooter Pro</strong></p>
+
+            <form id="inquiryForm">
+                <div class="mb-3">
+                    <label class="form-label">Full Name *</label>
+                    <input type="text" class="form-control" name="name" required placeholder="Enter your full name">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email Address *</label>
+                    <input type="email" class="form-control" name="email" required placeholder="Enter your email address">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Phone Number *</label>
+                    <input type="tel" class="form-control" name="phone" required placeholder="Enter your phone number">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Preferred Date</label>
+                    <input type="date" class="form-control" name="preferredDate">
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Message</label>
+                    <textarea class="form-control" name="message" rows="3" placeholder="Any specific requirements or questions?"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100" id="submitBtn">
+                    Submit Request
+                </button>
+            </form>
+        </div>
+    </div> -->
+
+    <!-- Toast Notification -->
+    <!-- <div class="toast" id="toast">
+        <div class="d-flex align-items-center">
+            <i class="fas fa-check-circle me-2"></i>
+            <span id="toastMessage">Request submitted successfully!</span>
+        </div>
+    </div> -->
+
     <!-- Scroll to Top Button -->
-    <button class="scroll-top" id="scroll-top" aria-label="Scroll to top">
+    <!-- <button class="scroll-top-btn" id="scroll-top" aria-label="Scroll to top">
         <i class="fas fa-chevron-up"></i>
-    </button>
+    </button> -->
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Toast Notification Container -->
-    <div id="toast-container"></div>
+    <!-- Main JavaScript -->
+    <script src="./assets/js/main.js"></script>
     
-    <!-- JavaScript -->
-    <script src="assets/js/main.js"></script>
+    <!-- Product Page JavaScript -->
+    <script>
+        // Product Page Specific JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            // Gallery functionality
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            const mainImageSrc = document.getElementById('mainImageSrc');
+
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    // Remove active class from all thumbnails
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked thumbnail
+                    this.classList.add('active');
+                    // Update main image
+                    mainImageSrc.src = this.dataset.image;
+                });
+            });
+
+            // Color selection
+            const colorOptions = document.querySelectorAll('.color-option');
+            const selectedColorText = document.getElementById('selectedColor');
+            const colorNames = {
+                'red': 'Crimson Red',
+                'blue': 'Ocean Blue',
+                'black': 'Midnight Black',
+                'white': 'Pearl White'
+            };
+
+            colorOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    colorOptions.forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    selectedColorText.textContent = colorNames[this.dataset.color];
+                });
+            });
+
+            // Variant selection
+            const variantOptions = document.querySelectorAll('.variant-option');
+
+            variantOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    variantOptions.forEach(o => o.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update price display (if needed)
+                    const price = this.dataset.price;
+                    const priceDisplay = document.querySelector('.display-6.fw-bold.text-dark');
+                    if (priceDisplay) {
+                        priceDisplay.textContent = `₹${parseInt(price).toLocaleString()}`;
+                    }
+                });
+            });
+
+            // Specification tabs
+            const specTabs = document.querySelectorAll('.spec-tab');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            specTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    specTabs.forEach(t => t.classList.remove('active'));
+                    tabPanes.forEach(p => {
+                        p.classList.remove('active');
+                        p.style.display = 'none';
+                    });
+
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Show corresponding tab pane
+                    const targetTab = document.getElementById(this.dataset.tab);
+                    if (targetTab) {
+                        targetTab.classList.add('active');
+                        targetTab.style.display = 'block';
+                    }
+                });
+            });
+
+            // Modal functionality
+            const inquiryModal = document.getElementById('inquiryModal');
+            const testDriveBtn = document.getElementById('testDriveBtn');
+            const ctaTestDriveBtn = document.getElementById('ctaTestDriveBtn');
+            const closeModal = document.getElementById('closeModal');
+            const inquiryForm = document.getElementById('inquiryForm');
+            const toast = document.getElementById('toast');
+
+            function showModal() {
+                inquiryModal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function hideModal() {
+                inquiryModal.classList.remove('show');
+                document.body.style.overflow = '';
+            }
+
+            function showToast(message) {
+                document.getElementById('toastMessage').textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+
+            // Event listeners
+            testDriveBtn.addEventListener('click', showModal);
+            ctaTestDriveBtn.addEventListener('click', showModal);
+            closeModal.addEventListener('click', hideModal);
+
+            // Close modal on backdrop click
+            inquiryModal.addEventListener('click', function(e) {
+                if (e.target === inquiryModal) {
+                    hideModal();
+                }
+            });
+
+            // Form submission
+            inquiryForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simulate form submission
+                const submitBtn = document.getElementById('submitBtn');
+                submitBtn.textContent = 'Submitting...';
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    hideModal();
+                    showToast('Thank you! We will contact you soon to schedule your test drive.');
+                    inquiryForm.reset();
+                    submitBtn.textContent = 'Submit Request';
+                    submitBtn.disabled = false;
+                }, 1000);
+            });
+
+            // Compare button
+            document.getElementById('compareBtn').addEventListener('click', function() {
+                showToast('Comparison feature coming soon!');
+            });
+
+            // Animate progress bars when they come into view
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const progressBars = entry.target.querySelectorAll('.spec-progress-fill');
+                        progressBars.forEach(bar => {
+                            const width = bar.style.width;
+                            bar.style.width = '0%';
+                            setTimeout(() => {
+                                bar.style.width = width;
+                            }, 100);
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe the specification section
+            const specSection = document.querySelector('.spec-content');
+            if (specSection) {
+                observer.observe(specSection);
+            }
+        });
+    </script>
+    <!-- kaiftech -->
+     <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const btn = document.getElementById('hamburger');
+  const overlay = document.getElementById('mobile-menu-overlay');
+  const focusableSelectors = 'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])';
+  let lastFocused = null;
+
+  function openMenu(){
+    overlay.classList.add('open');
+    btn.classList.add('is-active');
+    btn.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('menu-open');
+    lastFocused = document.activeElement;
+    // focus first link for accessibility
+    const first = overlay.querySelector(focusableSelectors);
+    if(first) first.focus();
+  }
+  function closeMenu(){
+    overlay.classList.remove('open');
+    btn.classList.remove('is-active');
+    btn.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+    if(lastFocused) lastFocused.focus();
+  }
+  function toggleMenu(){
+    const isOpen = overlay.classList.contains('open');
+    isOpen ? closeMenu() : openMenu();
+  }
+
+  // Button click
+  btn.addEventListener('click', toggleMenu);
+
+  // Click outside the panel to close
+  overlay.addEventListener('click', (e) => {
+    const panel = e.currentTarget.querySelector('.mobile-menu-content');
+    if(!panel.contains(e.target)) closeMenu();
+  });
+
+  // Close when a mobile nav link is clicked
+  overlay.querySelectorAll('.mobile-nav-link').forEach(a => {
+    a.addEventListener('click', closeMenu);
+  });
+
+  // ESC to close
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && overlay.classList.contains('open')) closeMenu();
+  });
+
+  // Safety: if resized to desktop while open, close it
+  window.addEventListener('resize', () => {
+    if(window.innerWidth > 992 && overlay.classList.contains('open')) closeMenu();
+  });
+});
+</script>
+
 </body>
 </html>
