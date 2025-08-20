@@ -3801,7 +3801,7 @@ section {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
+  text-emphasis-color: transparent;
 
   /* Always animate */
   animation: logoGradientMove 6s linear infinite;
@@ -3879,8 +3879,6 @@ section {
 @media (max-width: 480px) {
   .hero-title { font-size: 1.8rem; }
 }
-
-/* kaiftech */
 
 
 /* VoltEdge Motors - Mobile-First Creative Electric Vehicle Website Styles */
@@ -7764,5 +7762,3 @@ section {
 @media (max-width: 480px) {
   .hero-title { font-size: 1.8rem; }
 }
-
-/* kaif */
