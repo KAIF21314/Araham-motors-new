@@ -2594,8 +2594,8 @@ section {
 
 .node {
     position: absolute;
-    width: 60px;
-    height: 60px;
+    width: 75px;
+    height: 75px;
     background: var(--white);
     border: 3px solid var(--brand);
     border-radius: var(--radius-full);
@@ -2611,6 +2611,8 @@ section {
     transition: var(--transition-base);
     animation: nodeFloat 3s ease-in-out infinite;
 }
+
+
 
 .node:nth-child(1) {
     top: 0;
@@ -2700,6 +2702,7 @@ section {
     font-weight: var(--font-weight-semibold);
     color: var(--dark);
     margin-bottom: var(--space-2);
+    
 }
 
 .connectivity-item p {
