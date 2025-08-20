@@ -381,7 +381,7 @@ a:hover {
 .hamburger-line {
     width: 24px;
     height: 2px;
-    background-color: var(--dark);
+    /* background-color: var(--white); */
     border-radius: var(--radius-full);
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform-origin: center;
@@ -407,6 +407,9 @@ a:hover {
 
 .hamburger.active .hamburger-line:nth-child(3) {
     transform: rotate(-45deg) translateY(0);
+}
+.hamburger-line{
+    background-color: var(--white);
 }
 
 /* Mobile Menu Overlay */
@@ -4264,7 +4267,7 @@ a:hover {
 .hamburger-line {
     width: 24px;
     height: 2px;
-    background-color: var(--dark);
+    background-color: var(--white);
     border-radius: var(--radius-full);
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform-origin: center;
