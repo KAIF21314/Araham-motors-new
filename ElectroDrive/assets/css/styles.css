@@ -529,7 +529,7 @@ a:hover {
 }
 
 .mobile-social-links a:hover {
-    background : var(--accent);
+    background : var(--error);
     transform: translateY(-2px);
 }
 
@@ -5221,10 +5221,13 @@ section {
 }
 
 .social-link:hover {
-    background: var(--accent);
+    background: var(--error);
     transform: translateY(-2px) scale(1.1);
-    box-shadow: 0 8px 25px rgba(18, 194, 168, 0.3);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+    color: var(--white);
 }
+
+
 
 .footer-title {
     font-size: var(--font-size-lg);
