@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Araham Motors — Model Details</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="./attached_assets/logo-favicon.png" type="image/png" />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <style>
+    /* --- Page-local enhancements (safe to keep) --- */
+
+    .product-gallery { position: sticky; top: 96px; }
+    .main-image { border-radius: var(--radius-xl); overflow: hidden; background:#f6f6f6; }
+    .main-image img { width:100%; height:500px; object-fit:cover; transition: transform .3s ease, opacity .4s ease; }
+    .main-image:hover img { transform: scale(1.03); }
+
+    /* fade effect */
+    #mainImageSrc { opacity: 1; transition: opacity .4s ease; }
+    #mainImageSrc.fade-out { opacity: 0; }
+
+    .thumbnail-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-3); margin-top:var(--space-4); }
+    .thumbnail { border-radius:var(--radius-md); overflow:hidden; cursor:pointer; border:2px solid transparent; transition: all .2s ease; }
+    .thumbnail.active { border-color: var(--brand); box-shadow: 0 0 0 2px var(--brand); }
+    .thumbnail img { width:100%; height:80px; object-fit:cover; display:block; }
+
+    @media (max-width: 768px){
+      .product-gallery { position: static; }
+      .main-image img { height: 360px; }
+      .thumbnail-grid { grid-template-columns:repeat(4, 1fr); }
+    }
+
+    /* simple badges/text */
+    .text-brand { color: var(--brand); }
+    .product-meta { display:flex; gap:12px; align-items:center; }
+    .product-meta .badge { background:#e8fff8; color:#0B8A6A; border-radius:999px; padding:6px 10px; font-weight:600; }
+  </style>
+</head>
+<body>
+  <!-- Header (reuse your existing header markup if you have a component) -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="nav-wrapper">
+        <div class="logo">
+          <img src="./attached_assets/logo-img-removebg-preview.png" alt="Araham Motors Logo" style="width: 20%;height: 20%;">
+          <a href="index.html" aria-label="Araham Motors Home"><span class="logo-text">Araham Motors</span></a>
+        </div>
+
+        <nav class="nav-desktop" aria-label="Main navigation">
+          <ul class="nav-list">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="models.html" class="nav-link active">Models</a></li>
+            <li><a href="technology.html" class="nav-link">Technology</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+            <li><a href="contact.html" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay">
+      <div class="mobile-menu-content">
+        <nav class="mobile-nav" aria-label="Mobile navigation">
+          <ul class="mobile-nav-list">
+            <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+            <li><a href="models.html" class="mobile-nav-link active">Models</a></li>
+            <li><a href="technology.html" class="mobile-nav-link">Technology</a></li>
+            <li><a href="about.html" class="mobile-nav-link">About</a></li>
+            <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+          </ul>
+          <div class="mobile-menu-footer">
+            <p class="mobile-menu-tagline">Drive Electric. Drive Future.</p>
+            <div class="mobile-social-links">
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb-nav" aria-label="Breadcrumb" style="background:var(--gray-100); padding:16px 0; margin-top:70px;">
+      <div class="container">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="models.html">Models</a></li>
+          <li class="breadcrumb-item active" aria-current="page" id="breadcrumbCurrent">Loading…</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- Product -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row g-5">
+          <!-- Gallery -->
+          <div class="col-lg-6">
+            <div class="product-gallery">
+              <div class="main-image">
+                <img id="mainImageSrc" src="" alt="Main product image"/>
+              </div>
+              <div class="thumbnail-grid" id="thumbGrid"></div>
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div class="col-lg-6">
+            <div class="product-info">
+              <div class="mb-3 product-meta">
+                <span class="badge">New Model</span>
+                <span class="small text-muted" id="productRange"></span>
+              </div>
+
+              <h1 id="productTitle" class="display-5 fw-bold text-dark mb-2">Loading…</h1>
+              <p class="lead text-muted mb-3" id="productDesc">—</p>
+
+              <div class="mb-4">
+                <div class="d-flex align-items-baseline gap-3">
+                  <span class="display-6 fw-bold text-dark" id="productPrice">₹0</span>
+                  <span class="h5 text-muted text-decoration-line-through" id="productMrp" style="display:none;"></span>
+                  <span class="badge bg-success" id="productSavings" style="display:none;"></span>
+                </div>
+                <p class="text-muted small mb-0" id="productBlurb"></p>
+              </div>
+
+              <div class="d-grid gap-3 mb-4">
+                <a class="btn btn-primary btn-lg" href="contact.html"><i class="fas fa-calendar-alt me-2"></i>Request Test Drive</a>
+                <a class="btn btn-outline-primary btn-lg" href="contact.html"><i class="fas fa-phone me-2"></i>Talk to Sales</a>
+              </div>
+
+              <div class="bg-light rounded p-4">
+                <h5 class="fw-semibold mb-3">Key Features</h5>
+                <div class="row g-3" id="featureList">
+                  <!-- JS will populate feature chips -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- (Optional) Specs section scaffold -->
+        <div class="row g-5 mt-4" id="specsWrapper" style="display:none;">
+          <div class="col-12">
+            <h3 class="fw-bold mb-3">Specifications</h3>
+          </div>
+          <div class="col-md-6" id="specsLeft"></div>
+          <div class="col-md-6" id="specsRight"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (reuse your footer) -->
+  <footer class="footer">
+    <div class="footer-gradient"></div>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section footer-brand">
+          <div class="footer-logo"><span class="logo-text">Araham Motors</span></div>
+          <p class="footer-tagline">Drive Electric. Drive Future.</p>
+          <p class="footer-description">Leading the electric revolution with innovative vehicles that combine cutting-edge technology with sustainable design.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-section">
+          <h3 class="footer-title">Vehicles</h3>
+          <ul class="footer-links">
+            <li><a href="models.html">All Models</a></li>
+            <li><a href="models.html?slug=bliss">Bliss</a></li>
+            <li><a href="models.html?slug=raptor">Raptor</a></li>
+            <li><a href="models.html?slug=raptor-assist">Raptor Assist</a></li>
+            <li><a href="models.html?slug=signature">Signature</a></li>
+            <li><a href="models.html?slug=sonic">Sonic</a></li>
+            <li><a href="models.html?slug=brigadier">Brigadier</a></li>
+            <li><a href="models.html?slug=hl-500">HL-500</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3 class="footer-title">Support</h3>
+          <ul class="footer-links">
+            <li><a href="contact.html">Customer Support</a></li>
+            <li><a href="contact.html">Service Centers</a></li>
+            <li><a href="technology.html">Charging Network</a></li>
+            <li><a href="technology.html">Software Updates</a></li>
+            <li><a href="contact.html">Warranty</a></li>
+            <li><a href="contact.html">Roadside Assistance</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section footer-newsletter">
+          <h3 class="footer-title">Stay Connected</h3>
+          <p class="newsletter-description">Get the latest news, updates, and exclusive offers from Araham Motors.</p>
+          <form class="newsletter-form" id="newsletter-form">
+            <div class="form-group">
+              <input type="email" class="newsletter-input" placeholder="Enter your email" required aria-label="Email address" />
+              <button type="submit" class="newsletter-btn" aria-label="Subscribe to newsletter"><i class="fas fa-arrow-right"></i></button>
+            </div>
+          </form>
+          <div class="footer-contact">
+            <div class="contact-item"><i class="fas fa-phone"></i><span>9884170968</span></div>
+            <div class="contact-item"><i class="fas fa-phone"></i><span>9840202021</span></div>
+            <div class="contact-item"><i class="fas fa-envelope"></i><span>Arahammotors@yahoo.com</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-content">
+          <p class="copyright">&copy; 2025 Araham Motors. All rights reserved.</p>
+          <div class="legal-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Cookie Policy</a>
+            <a href="#">Legal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/models-page.js"></script>
+  <script>// assets/js/models-page.js
+
+document.addEventListener('DOMContentLoaded', function () {
+  /* ========= 1) PRODUCT CATALOG ========= */
+  // Add/modify models here. Use https:// (avoid // or ///)
+  const PRODUCTS = {
+    'signature': {
+      title: 'BMR Signature',
+      price: 91000,
+      mrp: null, // e.g., 99999 for strike-through
+      savingsText: null, // e.g., 'Save ₹9,999'
+      desc: 'Premium EV with 60km range, AWD and 4–5 hours charging.',
+      blurb: '*Ex-showroom price. Government subsidies may apply.',
+      range: 'Approx. 60 km on a single charge',
+      features: ['AWD', '4–5 hr Charge', 'Smart Display', 'LED Lighting'],
+      images: [
+        'https://bmrev.in/cdn/shop/files/signatue_pastel_blue.jpg?v=1746709845&width=1080'
+      ]
+    },
+    'sonic': {
+      title: 'BMR Sonic',
+      price: 83000,
+      mrp: null,
+      savingsText: null,
+      desc: 'RWD commuter EV with fast charging and sleek design.',
+      blurb: '*Ex-showroom price. Government subsidies may apply.',
+      range: 'Approx. 60 km on a single charge',
+      features: ['RWD', '4–5 hr Charge', 'Lightweight Frame', 'LED Lighting'],
+      images: [
+        'https://bmrev.in/cdn/shop/files/sonic-MercurySilver.jpg?v=1746269528&width=1080'
+      ]
+    },
+    'bliss': {
+      title: 'BMR Bliss',
+      price: 78000,
+      mrp: null,
+      savingsText: null,
+      desc: '70km range AWD EV — perfect balance of performance and comfort.',
+      blurb: '*Ex-showroom price. Government subsidies may apply.',
+      range: 'Approx. 70 km on a single charge',
+      features: ['AWD', '4–5 hr Charge', 'Comfort Seat', 'Regenerative Braking'],
+      images: [
+        'https://bmrev.in/cdn/shop/files/Bliss-OceanicBlue.jpg?v=1746265410&width=1080'
+      ]
+    },
+    'raptor': {
+      title: 'BMR Raptor',
+      price: 78000,
+      mrp: null,
+      savingsText: null,
+      desc: 'Sporty EV with agile handling and confident braking.',
+      blurb: '*Ex-showroom price. Government subsidies may apply.',
+      range: 'Approx. 70 km on a single charge',
+      features: ['FWD', '4–5 hr Charge', 'Sport Tuning', 'CBS'],
+      images: [
+        'https://bmrev.in/cdn/shop/files/raptor-LightPurple_b1b5041f-dbcf-43cd-9582-d64df7760879.jpg?v=1746863088&width=1080'
+      ]
+    },
+    'raptor-assist': {
+      title: 'BMR Raptor Assist',
+      price: 88000,
+      mrp: null,
+      savingsText: null,
+      desc: 'Enhanced Raptor with assistive tech and extended features.',
+      blurb: '*Ex-showroom price. Government subsidies may apply.',
+      range: 'Approx. 70 km on a single charge',
+      features: ['FWD', 'Rider Assist', '4–5 hr Charge', 'LED Pack'],
+      images: [
+        'https://bmrev.in/cdn/shop/files/Artboard3_0e454f8e-4412-4dce-9327-501c1cf88605.jpg?v=1748500332&width=1080'
+      ]
+    },
+    'brigadier': {
+      title: 'BMR Brigadier',
+      price: 138000,
+      mrp: null,
+      savingsText: null,
+      desc: 'Flagship model with premium build and long range.',
+      blurb: '*Ex-showroom price. Government subsidies may apply.',
+      range: 'Approx. 120 km on a single charge',
+      features: ['FWD', '4–5 hr Charge', 'Premium Suspension', 'LED Matrix'],
+      images: [
+        'https://bmrev.in/cdn/shop/files/Brigadier-WoodlandGreen.jpg?v=1746423483&width=1080',
+        'https://bmrev.in/cdn/shop/files/Brigadier-HoneyBeige.jpg?v=1746423483&width=1080',
+        'https://bmrev.in/cdn/shop/files/Brigadier-OzoneBlue.jpg?v=1746423483&width=1080',
+        'https://bmrev.in/cdn/shop/files/Brigadier-MercurySilver.jpg?v=1746271867&width=1080'
+      ]
+    },
+    'hl-500': {
+      title: 'BMR HL-500',
+      price: 99000,
+      mrp: null,
+      savingsText: null,
+      desc: 'Urban-focused EV, compact and efficient for city life.',
+      blurb: '*Ex-showroom price. Government subsidies may apply.',
+      range: 'Approx. 60 km on a single charge',
+      features: ['FWD', '4–5 hr Charge', 'Compact Frame', 'LED Lighting'],
+      images: [
+        'https://bmrev.in/cdn/shop/files/hl500-AzureSky.jpg?v=1746270964&width=1080'
+      ]
+    }
+  };
+
+  /* ========= 2) HELPERS ========= */
+  const $ = (sel, ctx=document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+
+  function normalizeUrl(u) {
+    if (!u) return '';
+    u = u.trim();
+    if (u.startsWith('///')) u = 'https://' + u.replace(/^\/+/, '');
+    if (u.startsWith('//'))  u = 'https:' + u;
+    return u;
+  }
+
+  function setMainImage(mainImgEl, url) {
+    const clean = normalizeUrl(url);
+    if (!clean) return;
+    const loader = new Image();
+    loader.onload = () => {
+      mainImgEl.classList.add('fade-out');
+      setTimeout(() => {
+        mainImgEl.src = clean;
+        mainImgEl.removeAttribute('srcset');
+        mainImgEl.classList.remove('fade-out');
+      }, 400); // match CSS
+    };
+    loader.onerror = () => console.warn('Image failed to load:', clean);
+    loader.src = clean;
+  }
+
+  function renderThumbs(gridEl, images, mainImgEl) {
+    if (!gridEl) return;
+    gridEl.innerHTML = images.map((url, i) => {
+      const full = normalizeUrl(url);
+      // You can use a smaller thumb if your CDN supports width param, else reuse full
+      const thumb = full.replace(/width=\d+/, 'width=300');
+      return `
+        <div class="thumbnail ${i === 0 ? 'active' : ''}" data-image="${full}">
+          <img loading="lazy" decoding="async" src="${thumb}" alt="View ${i+1}">
+        </div>
+      `;
+    }).join('');
+
+    gridEl.addEventListener('click', (e) => {
+      const card = e.target.closest('.thumbnail');
+      if (!card) return;
+      $$('.thumbnail', gridEl).forEach(t => t.classList.remove('active'));
+      card.classList.add('active');
+      setMainImage(mainImgEl, card.dataset.image);
+    });
+  }
+
+  function formatINR(n) {
+    try {
+      return new Intl.NumberFormat('en-IN').format(Number(n||0));
+    } catch {
+      return Number(n||0).toString();
+    }
+  }
+
+  /* ========= 3) READ SLUG & LOAD PRODUCT ========= */
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('slug') || 'brigadier'; // default if not provided
+  const product = PRODUCTS[slug];
+
+  const mainImgEl = $('#mainImageSrc');
+  const thumbGrid = $('#thumbGrid');
+
+  const titleEl = $('#productTitle');
+  const priceEl = $('#productPrice');
+  const mrpEl   = $('#productMrp');
+  const saveEl  = $('#productSavings');
+  const descEl  = $('#productDesc');
+  const blurbEl = $('#productBlurb');
+  const rangeEl = $('#productRange');
+  const bcEl    = $('#breadcrumbCurrent');
+  const featWrap= $('#featureList');
+
+  if (!product) {
+    // fallback UI
+    if (titleEl) titleEl.textContent = 'Model not found';
+    if (descEl)  descEl.textContent = 'The model you requested does not exist.';
+    if (bcEl)    bcEl.textContent = 'Not Found';
+    // show a placeholder image if you’d like
+    if (mainImgEl) mainImgEl.src = 'https://via.placeholder.com/1080x600?text=Model+Not+Found';
+    return;
+  }
+
+  // Fill content
+  if (titleEl) titleEl.textContent = product.title;
+  if (bcEl)    bcEl.textContent = product.title;
+
+  if (priceEl) priceEl.textContent = `₹${formatINR(product.price)}`;
+  if (mrpEl) {
+    if (product.mrp) {
+      mrpEl.style.display = '';
+      mrpEl.textContent = `₹${formatINR(product.mrp)}`;
+    } else {
+      mrpEl.style.display = 'none';
+    }
+  }
+  if (saveEl) {
+    if (product.savingsText) {
+      saveEl.style.display = '';
+      saveEl.textContent = product.savingsText;
+    } else {
+      saveEl.style.display = 'none';
+    }
+  }
+
+  if (descEl)  descEl.textContent  = product.desc || '';
+  if (blurbEl) blurbEl.textContent = product.blurb || '';
+  if (rangeEl) rangeEl.textContent = product.range || '';
+
+  // Main image + thumbs
+  if (product.images?.length) {
+    setMainImage(mainImgEl, product.images[0]);
+    renderThumbs(thumbGrid, product.images, mainImgEl);
+  }
+
+  // Features
+  if (featWrap) {
+    featWrap.innerHTML = (product.features || []).map(text => `
+      <div class="col-6">
+        <div class="d-flex align-items-center">
+          <i class="fas fa-check-circle text-brand me-2"></i>
+          <span class="small fw-medium">${text}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  /* ========= 4) OPTIONAL: SPEC RENDER (if you add specs later) =========
+  const specsWrapper = document.getElementById('specsWrapper');
+  // If you add product.specs = {left:[{label:'Top Speed', value:'25 km/h'}], right:[...]}
+  if (product.specs && specsWrapper) {
+    specsWrapper.style.display = '';
+    const left = document.getElementById('specsLeft');
+    const right = document.getElementById('specsRight');
+    function list(items){
+      return items.map(i => `
+        <div class="spec-item d-flex justify-content-between align-items-center py-2 border-bottom">
+          <span class="fw-medium">${i.label}</span>
+          <span class="text-brand fw-semibold">${i.value}</span>
+        </div>
+      `).join('');
+    }
+    left.innerHTML = list(product.specs.left || []);
+    right.innerHTML = list(product.specs.right || []);
+  }
+  */
+});
+</script>
+</body>
+</html>
