@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Araham Motors</title>
 
-  <link rel="shortcut icon" href="./attached_assets/logo-favicon.png" type="image/png" style="height:20px;width:30px;">
+  <link rel="shortcut icon" href="./attached_assets/logo-favicon.png" type="image/png" style="height: 20px;width: 30px;">
   <meta name="description" content="Araham Motors - Leading electric vehicle manufacturer. Discover our innovative EV lineup with advanced technology, sustainable design, and exceptional performance.">
 
   <!-- Open Graph Tags -->
@@ -40,7 +41,7 @@
       <div class="nav-wrapper">
         <!-- Logo -->
         <div class="logo">
-          <img src="./attached_assets/logo-img-removebg-preview.png" alt="Araham Motors Logo" style="width:20%;height:20%;">
+          <img src="./attached_assets/logo-img-removebg-preview.png" alt="Araham Motors Logo" style="width: 20%;height: 20%;">
           <a href="index.html" aria-label="Araham Motors Home">
             <span class="logo-text">Araham Motors</span>
           </a>
@@ -125,32 +126,37 @@
     <section class="metrics" id="metrics">
       <div class="container">
         <div class="services-grid">
-          <!-- Service 1 -->
+
           <div class="service-box" data-animate>
-            <div class="service-icon"><i class="fas fa-tools"></i></div>
+            <div class="service-icon">
+              <i class="fas fa-tools"></i>
+            </div>
             <h3 class="service-title">EV Maintenance</h3>
             <p class="service-desc">Regular check-ups, battery health monitoring, and performance optimization.</p>
           </div>
 
-          <!-- Service 2 -->
           <div class="service-box" data-animate>
-            <div class="service-icon"><i class="fas fa-charging-station"></i></div>
+            <div class="service-icon">
+              <i class="fas fa-charging-station"></i>
+            </div>
             <h3 class="service-title">Charging Solutions</h3>
             <p class="service-desc">Home and public charging station installation and support.</p>
           </div>
 
-          <!-- Service 4 -->
           <div class="service-box" data-animate>
-            <div class="service-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="service-icon">
+              <i class="fas fa-shield-alt"></i>
+            </div>
             <h3 class="service-title">Extended Warranty</h3>
             <p class="service-desc">Comprehensive coverage up to 8 years for peace of mind.</p>
           </div>
+
         </div>
       </div>
     </section>
 
     <!-- Featured Models Carousel -->
-    <section class="featured-models" id="featured-models">
+    <section class="featured-models" id="featured-models-main">
       <div class="container">
         <div class="section-header" data-animate>
           <h2 class="section-title">Featured Models</h2>
@@ -158,7 +164,7 @@
         </div>
 
         <div class="carousel-container">
-          <div class="carousel" id="models-carousel">
+          <div class="carousel" id="models-carousel-main">
             <div class="carousel-track">
 
               <!-- Signature -->
@@ -175,7 +181,6 @@
                       <span class="spec-chip">AWD</span>
                       <span class="spec-chip">4-5 hours Charge</span>
                     </div>
-                    <!-- KEY CHANGE: link carries the slug -->
                     <a href="product.html?slug=signature" class="btn btn-outline">View Details</a>
                   </div>
                 </div>
@@ -257,6 +262,38 @@
                 </div>
               </div>
 
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <button class="carousel-btn carousel-btn-prev" id="carousel-prev-main" aria-label="Previous model">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="carousel-btn carousel-btn-next" id="carousel-next-main" aria-label="Next model">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+
+          <!-- Carousel Indicators -->
+          <div class="carousel-indicators" id="carousel-indicators-main">
+            <button class="carousel-indicator active" data-slide="0" aria-label="Go to slide 1"></button>
+            <button class="carousel-indicator" data-slide="1" aria-label="Go to slide 2"></button>
+            <button class="carousel-indicator" data-slide="2" aria-label="Go to slide 3"></button>
+            <button class="carousel-indicator" data-slide="3" aria-label="Go to slide 4"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- motorcycles -->
+    <section class="featured-models" id="featured-motorcycles">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <h2 class="section-title">Our Motorcycles</h2>
+        </div>
+        <div class="carousel-container">
+          <div class="carousel" id="models-carousel-bikes">
+            <div class="carousel-track">
+
               <!-- Brigadier -->
               <div class="carousel-slide">
                 <div class="model-card" data-slug="brigadier">
@@ -275,6 +312,55 @@
                   </div>
                 </div>
               </div>
+
+              <!-- Brigadier-RS (points to brigadier details unless you add a separate slug later) -->
+              <div class="carousel-slide">
+                <div class="model-card" data-slug="brigadier">
+                  <div class="model-image">
+                    <img src="https://bmrev.in/cdn/shop/files/BrigadierRS-LunarGrey.jpg?v=1746434882&width=1080" alt="BMR Brigadier-RS" loading="lazy">
+                  </div>
+                  <div class="model-info">
+                    <h3 class="model-name">BMR Brigadier-RS</h3>
+                    <p class="model-price">From ₹1,38,000</p>
+                    <div class="model-specs">
+                      <span class="spec-chip">120km Range</span>
+                      <span class="spec-chip">FWD</span>
+                      <span class="spec-chip">4-5 Hours Charge</span>
+                    </div>
+                    <a href="product.html?slug=brigadier" class="btn btn-outline">View Details</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <button class="carousel-btn carousel-btn-prev" id="carousel-prev-bikes" aria-label="Previous model">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="carousel-btn carousel-btn-next" id="carousel-next-bikes" aria-label="Next model">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+
+          <!-- Carousel Indicators -->
+          <div class="carousel-indicators" id="carousel-indicators-bikes">
+            <button class="carousel-indicator active" data-slide="0" aria-label="Go to slide 1"></button>
+            <button class="carousel-indicator" data-slide="1" aria-label="Go to slide 2"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- heavy loaders -->
+    <section class="featured-models" id="featured-loaders">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <h2 class="section-title">Our HeavyLoaders</h2>
+        </div>
+        <div class="carousel-container">
+          <div class="carousel" id="models-carousel-loaders">
+            <div class="carousel-track">
 
               <!-- HL-500 -->
               <div class="carousel-slide">
@@ -295,29 +381,64 @@
                 </div>
               </div>
 
+              <!-- HL-200 (links to HL-500 details until you add its own slug) -->
+              <div class="carousel-slide">
+                <div class="model-card" data-slug="hl-500">
+                  <div class="model-image">
+                    <img src="https://bmrev.in/cdn/shop/files/hl200-PacificBlue.jpg?v=1746799175&width=1080" alt="BMR HL-200" loading="lazy">
+                  </div>
+                  <div class="model-info">
+                    <h3 class="model-name">BMR HL-200</h3>
+                    <p class="model-price">From ₹93,000</p>
+                    <div class="model-specs">
+                      <span class="spec-chip">70km Range</span>
+                      <span class="spec-chip">FWD</span>
+                      <span class="spec-chip">4-5 Hours Charge</span>
+                    </div>
+                    <a href="product.html?slug=hl-500" class="btn btn-outline">View Details</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- HL-200 LITE (links to HL-500 details until you add its own slug) -->
+              <div class="carousel-slide">
+                <div class="model-card" data-slug="hl-500">
+                  <div class="model-image">
+                    <img src="https://bmrev.in/cdn/shop/files/HL200LITE-PacificBlue.jpg?v=1746270589&width=1080" alt="BMR HL-200 LITE" loading="lazy">
+                  </div>
+                  <div class="model-info">
+                    <h3 class="model-name">BMR HL-200 LITE</h3>
+                    <p class="model-price">From ₹92,000</p>
+                    <div class="model-specs">
+                      <span class="spec-chip">70km Range</span>
+                      <span class="spec-chip">FWD</span>
+                      <span class="spec-chip">4-5 Hours Charge</span>
+                    </div>
+                    <a href="product.html?slug=hl-500" class="btn btn-outline">View Details</a>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
-                    
+          <!-- Carousel Controls -->
+          <button class="carousel-btn carousel-btn-prev" id="carousel-prev-loaders" aria-label="Previous model">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="carousel-btn carousel-btn-next" id="carousel-next-loaders" aria-label="Next model">
+            <i class="fas fa-chevron-right"></i>
+          </button>
 
-                    <!-- Carousel Controls -->
-                    <button class="carousel-btn carousel-btn-prev" id="carousel-prev" aria-label="Previous model">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="carousel-btn carousel-btn-next" id="carousel-next" aria-label="Next model">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-
-                    <!-- Carousel Indicators -->
-                    <div class="carousel-indicators">
-                        <button class="carousel-indicator active" data-slide="0" aria-label="Go to slide 1"></button>
-                        <button class="carousel-indicator" data-slide="1" aria-label="Go to slide 2"></button>
-                        <button class="carousel-indicator" data-slide="2" aria-label="Go to slide 3"></button>
-                        <button class="carousel-indicator" data-slide="3" aria-label="Go to slide 4"></button>
-                    </div>
-                </div>
-            </div>
-        </section>
+          <!-- Carousel Indicators -->
+          <div class="carousel-indicators" id="carousel-indicators-loaders">
+            <button class="carousel-indicator active" data-slide="0" aria-label="Go to slide 1"></button>
+            <button class="carousel-indicator" data-slide="1" aria-label="Go to slide 2"></button>
+            <button class="carousel-indicator" data-slide="2" aria-label="Go to slide 3"></button>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Technology Teaser -->
     <section class="technology-teaser" id="technology">
@@ -329,23 +450,32 @@
 
         <div class="tech-grid">
           <div class="tech-card" data-animate>
-            <div class="tech-icon"><i class="fas fa-battery-full"></i></div>
+            <div class="tech-icon">
+              <i class="fas fa-battery-full"></i>
+            </div>
             <h3 class="tech-title">Next-Gen Battery</h3>
-            <p class="tech-description">Revolutionary lithium-ion technology delivering 650km range with ultra-fast 18-minute charging capabilities.</p>
+            <p class="tech-description">Revolutionary lithium-ion technology delivering 650km range with
+              ultra-fast 18-minute charging capabilities.</p>
             <a href="technology.html" class="tech-link">Learn More <i class="fas fa-arrow-right"></i></a>
           </div>
 
           <div class="tech-card" data-animate>
-            <div class="tech-icon"><i class="fas fa-cog"></i></div>
+            <div class="tech-icon">
+              <i class="fas fa-cog"></i>
+            </div>
             <h3 class="tech-title">Dual Motor System</h3>
-            <p class="tech-description">Advanced electric motors with intelligent torque distribution for optimal performance and efficiency.</p>
+            <p class="tech-description">Advanced electric motors with intelligent torque distribution for
+              optimal performance and efficiency.</p>
             <a href="technology.html" class="tech-link">Learn More <i class="fas fa-arrow-right"></i></a>
           </div>
 
           <div class="tech-card" data-animate>
-            <div class="tech-icon"><i class="fas fa-wifi"></i></div>
+            <div class="tech-icon">
+              <i class="fas fa-wifi"></i>
+            </div>
             <h3 class="tech-title">Smart Connectivity</h3>
-            <p class="tech-description">5G-enabled infotainment system with over-the-air updates and AI-powered assistance features.</p>
+            <p class="tech-description">5G-enabled infotainment system with over-the-air updates and
+              AI-powered assistance features.</p>
             <a href="technology.html" class="tech-link">Learn More <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
@@ -364,39 +494,73 @@
           <div class="testimonial-card" data-animate>
             <div class="testimonial-content">
               <div class="testimonial-stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
               </div>
-              <p class="testimonial-text">“Buying my EV bike from Araham Motors in Perimet was the best decision I’ve made. The ride is smooth, battery life is impressive, and charging is super quick. Commuting in Chennai traffic has become stress-free. Truly a game-changer for daily travel!”</p>
+              <p class="testimonial-text">“Buying my EV bike from Araham Motors in Perimet was the best
+                decision I’ve made. The ride is smooth, battery life is impressive, and charging is
+                super quick. Commuting in Chennai traffic has become stress-free. Truly a game-changer
+                for daily travel!”</p>
             </div>
             <div class="testimonial-author">
-              <div class="author-avatar"><img src="./attached_assets/sayeed.jpg" alt="Sunil Shetty" loading="lazy"></div>
-              <div class="author-info"><h4 class="author-name">Sunil Shetty</h4><p class="author-title">Trader</p></div>
+              <div class="author-avatar">
+                <img src="./attached_assets/sayeed.jpg" alt="Sunil Shetty" loading="lazy">
+              </div>
+              <div class="author-info">
+                <h4 class="author-name">Sunil Shetty</h4>
+                <p class="author-title">Trader</p>
+              </div>
             </div>
           </div>
 
           <div class="testimonial-card" data-animate>
             <div class="testimonial-content">
               <div class="testimonial-stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
               </div>
-              <p class="testimonial-text">“Araham Motors has exceeded my expectations. The design is sleek, the performance is powerful, and the maintenance is minimal compared to petrol bikes. Driving around Chennai feels effortless, and I’m proud to contribute to a greener future.”</p>
+              <p class="testimonial-text">“Araham Motors has exceeded my expectations. The design is
+                sleek, the performance is powerful, and the maintenance is minimal compared to petrol
+                bikes. Driving around Chennai feels effortless, and I’m proud to contribute to a greener
+                future.”</p>
             </div>
             <div class="testimonial-author">
-              <div class="author-avatar"><img src="./attached_assets/yasir.jpg" alt="Riyan shah" loading="lazy"></div>
-              <div class="author-info"><h4 class="author-name">Riyan shah</h4><p class="author-title">Software Engineer</p></div>
+              <div class="author-avatar">
+                <img src="./attached_assets/yasir.jpg" alt="Riyan shah" loading="lazy">
+              </div>
+              <div class="author-info">
+                <h4 class="author-name">Riyan shah</h4>
+                <p class="author-title">Software Engineer</p>
+              </div>
             </div>
           </div>
 
           <div class="testimonial-card" data-animate>
             <div class="testimonial-content">
               <div class="testimonial-stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
               </div>
-              <p class="testimonial-text">“I’ve been using my EV bike for over a month now, and I absolutely love it! The bike is silent, eco-friendly, and cost-efficient. Araham Motors provided excellent support during the purchase and even helped me set up a home charging point. Highly recommended!”</p>
+              <p class="testimonial-text">“I’ve been using my EV bike for over a month now, and I
+                absolutely love it! The bike is silent, eco-friendly, and cost-efficient. Araham Motors
+                provided excellent support during the purchase and even helped me set up a home charging
+                point. Highly recommended!”</p>
             </div>
             <div class="testimonial-author">
-              <div class="author-avatar"><img src="./attached_assets/kaif.jpg" alt="Rohan" loading="lazy"></div>
-              <div class="author-info"><h4 class="author-name">Rohan</h4><p class="author-title">CEO of Urbantech</p></div>
+              <div class="author-avatar">
+                <img src="./attached_assets/kaif.jpg" alt="Rohan" loading="lazy">
+              </div>
+              <div class="author-info">
+                <h4 class="author-name">Rohan</h4>
+                <p class="author-title">CEO of Urbantech</p>
+              </div>
             </div>
           </div>
         </div>
@@ -421,16 +585,29 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-section footer-brand">
-          <div class="footer-logo"><span class="logo-text">Araham Motors</span></div>
+          <div class="footer-logo">
+            <span class="logo-text">Araham Motors</span>
+          </div>
           <p class="footer-tagline">Drive Electric. Drive Future.</p>
-          <p class="footer-description">Leading the electric revolution with innovative vehicles that combine cutting-edge technology with sustainable design.</p>
+          <p class="footer-description">Leading the electric revolution with innovative vehicles that combine
+            cutting-edge technology with sustainable design.</p>
 
           <div class="social-links">
-            <a href="#" class="social-link" id="face" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-link" id="twit" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-link" id="face" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link" id="twit" aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+              <i class="fab fa-youtube"></i>
+            </a>
           </div>
         </div>
 
@@ -438,16 +615,13 @@
           <h3 class="footer-title">Vehicles</h3>
           <ul class="footer-links">
             <li><a href="models.html">All Models</a></li>
-            <li><a href="models.html">Bliss</a></li>
-            <li><a href="models.html">Raptor</a></li>
-            <li><a href="models.html">Raptor Assist</a></li>
-            <li><a href="models.html">Signature</a></li>
-            <li><a href="contact.html">Sonic</a></li>
-            <li><a href="contact.html">Brigadier</a></li>
-            <li><a href="contact.html">Brigadier-RS</a></li>
-            <li><a href="contact.html">HL-200</a></li>
-            <li><a href="contact.html">HL-200 Lite</a></li>
-            <li><a href="contact.html">HL-500</a></li>
+            <li><a href="product.html?slug=bliss">Bliss</a></li>
+            <li><a href="product.html?slug=raptor">Raptor</a></li>
+            <li><a href="product.html?slug=raptor-assist">Raptor Assist</a></li>
+            <li><a href="product.html?slug=signature">Signature</a></li>
+            <li><a href="product.html?slug=sonic">Sonic</a></li>
+            <li><a href="product.html?slug=brigadier">Brigadier</a></li>
+            <li><a href="product.html?slug=hl-500">HL-500</a></li>
           </ul>
         </div>
 
@@ -477,7 +651,8 @@
 
         <div class="footer-section footer-newsletter">
           <h3 class="footer-title">Stay Connected</h3>
-          <p class="newsletter-description">Get the latest news, updates, and exclusive offers from Araham Motors.</p>
+          <p class="newsletter-description">Get the latest news, updates, and exclusive offers from Araham
+            Motors.</p>
 
           <form class="newsletter-form" id="newsletter-form">
             <div class="form-group">
@@ -489,9 +664,18 @@
           </form>
 
           <div class="footer-contact">
-            <div class="contact-item"><i class="fas fa-phone"></i><span>9884170968</span></div>
-            <div class="contact-item"><i class="fas fa-phone"></i><span>9840202021</span></div>
-            <div class="contact-item"><i class="fas fa-envelope"></i><span>Arahammotors@yahoo.com</span></div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>9884170968</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <span>9840202021</span>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <span>Arahammotors@yahoo.com</span>
+            </div>
           </div>
         </div>
       </div>
@@ -521,17 +705,16 @@
   <!-- JavaScript -->
   <script src="assets/js/main.js"></script>
 
-  <!-- OPTIONAL: make the entire card clickable to the same href as the button -->
+  <!-- Make whole model cards clickable (to the same href as the button) -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.model-card').forEach(card => {
-        const link = card.querySelector('a.btn.btn-outline');
-        if (!link) return;
+        const btn = card.querySelector('a.btn.btn-outline');
+        if (!btn) return;
         card.style.cursor = 'pointer';
         card.addEventListener('click', (e) => {
-          // Allow regular clicks on buttons/links inside
           if (e.target.closest('a,button')) return;
-          window.location.href = link.href;
+          window.location.href = btn.href;
         });
       });
     });
