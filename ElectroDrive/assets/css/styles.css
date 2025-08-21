@@ -381,7 +381,7 @@ a:hover {
 .hamburger-line {
     width: 24px;
     height: 2px;
-    background-color: var(--dark);
+    /* background-color: var(--white); */
     border-radius: var(--radius-full);
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform-origin: center;
@@ -407,6 +407,9 @@ a:hover {
 
 .hamburger.active .hamburger-line:nth-child(3) {
     transform: rotate(-45deg) translateY(0);
+}
+.hamburger-line{
+    background-color: var(--white);
 }
 
 /* Mobile Menu Overlay */
@@ -529,7 +532,7 @@ a:hover {
 }
 
 .mobile-social-links a:hover {
-    background : var(--accent);
+    background : var(--error);
     transform: translateY(-2px);
 }
 
@@ -4264,7 +4267,7 @@ a:hover {
 .hamburger-line {
     width: 24px;
     height: 2px;
-    background-color: var(--dark);
+    background-color: var(--white);
     border-radius: var(--radius-full);
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform-origin: center;
@@ -5221,10 +5224,13 @@ section {
 }
 
 .social-link:hover {
-    background: var(--accent);
+    background: var(--error);
     transform: translateY(-2px) scale(1.1);
-    box-shadow: 0 8px 25px rgba(18, 194, 168, 0.3);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3);
+    color: var(--white);
 }
+
+
 
 .footer-title {
     font-size: var(--font-size-lg);
