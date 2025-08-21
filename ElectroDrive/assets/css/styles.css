@@ -4267,7 +4267,15 @@ a:hover {
 .hamburger-line {
     width: 24px;
     height: 2px;
-    background-color: var(--white);
+    /* background-color:rgb(104, 255, 104); */
+      background: linear-gradient(
+  90deg,
+  #000000,   /* Energy Green */
+  #3a3232,   /* Aqua Electric */
+  #5d9cac,   /* Sky/Electric Blue */
+  #9f98c2,   /* Tech Violet */
+  #82d6af    /* loop back to Energy Green */
+);
     border-radius: var(--radius-full);
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     transform-origin: center;
