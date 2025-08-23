@@ -811,7 +811,7 @@ section {
 /* Page Header */
 .page-header {
     padding: var(--space-24) 0 var(--space-16);
-    background: linear-gradient(135deg, var(--light) 0%, var(--gray-100) 100%);
+    background: linear-gradient(135deg, var(--light) 0%, var(--gray-100) 100%); 
     text-align: center;
     margin-top: 70px;
 }
