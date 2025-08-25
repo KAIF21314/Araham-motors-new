@@ -2924,6 +2924,7 @@ section {
     box-shadow: var(--shadow-md);
     transition: var(--transition-base);
     text-align: center;
+    
 }
 
 .leader-card:hover {
