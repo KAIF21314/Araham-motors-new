@@ -139,108 +139,58 @@
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="contact-form-container" data-animate>
-                        <form class="contact-form" id="contact-form">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="firstName" class="form-label">First Name *</label>
-                                    <input type="text" id="firstName" name="firstName" class="form-input" required>
-                                    <span class="form-error" id="firstName-error"></span>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="lastName" class="form-label">Last Name *</label>
-                                    <input type="text" id="lastName" name="lastName" class="form-input" required>
-                                    <span class="form-error" id="lastName-error"></span>
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="email" class="form-label">Email *</label>
-                                    <input type="email" id="email" name="email" class="form-input" required>
-                                    <span class="form-error" id="email-error"></span>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" id="phone" name="phone" class="form-input">
-                                    <span class="form-error" id="phone-error"></span>
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="city" class="form-label">City</label>
-                                    <input type="text" id="city" name="city" class="form-input">
-                                    <span class="form-error" id="city-error"></span>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="modelInterest" class="form-label">Model Interest</label>
-                                    <select id="modelInterest" name="modelInterest" class="form-select">
-                                        <option value="">Select a model</option>
-                                        <option value="apex">VoltEdge Apex</option>
-                                        <option value="pulse">VoltEdge Pulse</option>
-                                        <option value="prime-suv">VoltEdge Prime SUV</option>
-                                        <option value="city">VoltEdge City</option>
-                                        <option value="multiple">Multiple Models</option>
-                                        <option value="general">General Inquiry</option>
-                                    </select>
-                                    <span class="form-error" id="modelInterest-error"></span>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="inquiryType" class="form-label">Inquiry Type *</label>
-                                <div class="radio-group">
-                                    <label class="radio-label">
-                                        <input type="radio" name="inquiryType" value="test-drive" class="radio-input" required>
-                                        <span class="radio-custom"></span>
-                                        Schedule Test Drive
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="inquiryType" value="purchase" class="radio-input" required>
-                                        <span class="radio-custom"></span>
-                                        Purchase Information
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="inquiryType" value="service" class="radio-input" required>
-                                        <span class="radio-custom"></span>
-                                        Service & Support
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="inquiryType" value="general" class="radio-input" required>
-                                        <span class="radio-custom"></span>
-                                        General Question
-                                    </label>
-                                </div>
-                                <span class="form-error" id="inquiryType-error"></span>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="message" class="form-label">Message *</label>
-                                <textarea id="message" name="message" class="form-textarea" rows="5" placeholder="Tell us about your interest in VoltEdge vehicles..." required></textarea>
-                                <span class="form-error" id="message-error"></span>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="checkbox-label">
-                                    <input type="checkbox" id="newsletter" name="newsletter" class="checkbox-input">
-                                    <span class="checkbox-custom"></span>
-                                    I'd like to receive updates and news about  Motors
-                                </label>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-primary btn-large btn-full-width">
-                                <span class="btn-text">Send Message</span>
-                                <span class="btn-loader">
-                                    <i class="fas fa-spinner fa-spin"></i>
-                                </span>
-                            </button>
-                        </form>
-                    </div>
+                    <!-- img -->
+                    <section class="leadership-section">
+                        
+  <div class="container">
+    <div class="leader-row">
+      <img src="attached_assets/about1.jpeg" alt="Sarah Chen">
+    </div>
+    <div class="leader-row">
+      <img src="attached_assets/image-2.jpg" alt="Sarah Chen">
+    </div>
+    
+</section>
+
+<style>
+.container {
+  max-width: 00px; /* wider on big screens */
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.leader-row {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 18px;
+  flex-wrap: wrap; /* allows wrapping if needed */
+}
+
+.leader-row img {
+  flex: 1 1 50%;       /* each image takes half row */
+  aspect-ratio: 16/10; /* responsive height */
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Tablet: smaller gap */
+@media (max-width: 900px) {
+  .leader-row {
+    gap: 14px;
+  }
+}
+
+/* Mobile: stack images */
+@media (max-width: 640px) {
+  .leader-row img {
+    flex: 1 1 100%;  /* full width */
+  }
+}
+</style>
+
+
                 </div>
             </div>
         </section>
@@ -249,8 +199,8 @@
         <section class="dealer-locator-section">
             <div class="container">
                 <div class="section-header" data-animate>
-                    <h2 class="section-title">Find a Dealer</h2>
-                    <p class="section-subtitle">Locate your nearest VoltEdge dealer for test drives and service</p>
+                    <h2 class="section-title">Find a Store</h2>
+                    <p class="section-subtitle">Locate your Araham Motors for test drives and service</p>
                 </div>
                 
                 <div class="dealer-locator">
@@ -259,15 +209,12 @@
                             <label for="citySelect" class="form-label">Select Your City</label>
                             <select id="citySelect" class="form-select">
                                 <option value="">Choose a city</option>
-                                <option value="toronto">Toronto, ON</option>
+                                <option value="toronto">Periyamet, CHennai</option>
                                 <option value="vancouver">Vancouver, BC</option>
                                 <option value="montreal">Montreal, QC</option>
-                                <option value="calgary">Calgary, AB</option>
-                                <option value="ottawa">Ottawa, ON</option>
-                                <option value="winnipeg">Winnipeg, MB</option>
                             </select>
                         </div>
-                        <button class="btn btn-primary" id="find-dealers">Find Dealers</button>
+                        <button class="btn btn-primary" id="find-dealers">Find Stores</button>
                     </div>
                     
                     <div class="dealers-grid" id="dealers-grid">
@@ -288,21 +235,21 @@
                 <div class="faq-container">
                     <div class="faq-item" data-animate>
                         <button class="faq-question" aria-expanded="false">
-                            <span>How long does it take to charge a VoltEdge vehicle?</span>
+                            <span>How long does it take to charge a Araham vehicle?</span>
                             <i class="fas fa-chevron-down faq-icon"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>VoltEdge vehicles support ultra-fast charging, reaching 80% charge in just 18 minutes at our DC fast charging stations. Home charging overnight takes approximately 8-10 hours depending on your home charging setup.</p>
+                            <p>Araham vehicles support ultra-fast charging, reaching 80% charge in just 18 minutes at our DC fast charging stations. Home charging overnight takes approximately 8-10 hours depending on your home charging setup.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item" data-animate>
                         <button class="faq-question" aria-expanded="false">
-                            <span>What is the warranty coverage for VoltEdge vehicles?</span>
+                            <span>What is the warranty coverage for Araham vehicles?</span>
                             <i class="fas fa-chevron-down faq-icon"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>All VoltEdge vehicles come with an 8-year/160,000km comprehensive warranty covering the battery, drivetrain, and all major components. We also provide 4 years of unlimited roadside assistance and software updates.</p>
+                            <p>All Araham vehicles come with an 8-year/160,000km comprehensive warranty covering the battery, drivetrain, and all major components. We also provide 4 years of unlimited roadside assistance and software updates.</p>
                         </div>
                     </div>
                     
@@ -322,7 +269,7 @@
                             <i class="fas fa-chevron-down faq-icon"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>VoltEdge vehicles are compatible with all major charging networks. You can charge at home with our Wall Connector, use public Level 2 chargers, or access our network of 50,000+ ultra-fast DC charging stations across the country.</p>
+                            <p>Araham vehicles are compatible with all major charging networks. You can charge at home with our Wall Connector, use public Level 2 chargers, or access our network of 50,000+ ultra-fast DC charging stations across the country.</p>
                         </div>
                     </div>
                     
@@ -332,7 +279,7 @@
                             <i class="fas fa-chevron-down faq-icon"></i>
                         </button>
                         <div class="faq-answer">
-                            <p>Yes, VoltEdge vehicles qualify for federal and provincial electric vehicle incentives in Canada. Incentives vary by province and can provide up to $5,000 in rebates. Contact your local dealer for specific incentive information in your area.</p>
+                            <p>Yes, Araham vehicles qualify for federal and provincial electric vehicle incentives in Canada. Incentives vary by province and can provide up to $5,000 in rebates. Contact your local dealer for specific incentive information in your area.</p>
                         </div>
                     </div>
                 </div>
