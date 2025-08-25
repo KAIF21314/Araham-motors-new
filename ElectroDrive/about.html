@@ -22,6 +22,38 @@
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+<style>.page-title {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    #00ff87,   /* Energy Green */
+    #0af5e0,   /* Aqua Electric */
+    #00c3ff,   /* Electric Blue */
+    #5ed38f,   /* Tech Violet */
+    #00ff87    /* loop */
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientFlow 6s linear infinite;
+}
+
+
+
+/* Gradient animation */
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .page-title { font-size: 2.2rem; }
+}
+@media (max-width: 480px) {
+  .page-title{ font-size: 1.8rem; }
+}
+</style>
 <body>
     <!-- Skip to Content -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
