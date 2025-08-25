@@ -30,7 +30,7 @@
   <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
+<style></style>
 <body>
   <!-- Skip to Content -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -717,5 +717,111 @@
       });
     });
   </script>
+  <script>
+/**
+ * Generic, touch-friendly carousel initializer
+ * @param {Object} cfg
+ *   trackId: string        - ID of the .carousel element (parent of .carousel-track)
+ *   prevId, nextId: string - IDs of prev/next buttons
+ *   indicatorsId: string   - ID of indicators container (buttons with [data-slide])
+ */
+function initCarousel({ trackId, prevId, nextId, indicatorsId }) {
+  const viewEl = document.getElementById(trackId);
+  if (!viewEl) return;
+  const track = viewEl.querySelector('.carousel-track');
+  const slides = Array.from(track.querySelectorAll('.carousel-slide'));
+  if (!slides.length) return;
+
+  const btnPrev = document.getElementById(prevId);
+  const btnNext = document.getElementById(nextId);
+  const dotsWrap = document.getElementById(indicatorsId);
+
+  // ensure 1 slide per view width
+  function slideWidth() { return viewEl.getBoundingClientRect().width; }
+
+  let index = Math.max(0, slides.findIndex(s => s.classList.contains('active')));
+  if (index < 0) index = 0;
+
+  function goTo(i) {
+    index = (i + slides.length) % slides.length;
+    const x = -index * slideWidth();
+    track.style.transform = `translateX(${x}px)`;
+    slides.forEach((s, k) => s.classList.toggle('active', k === index));
+    if (dotsWrap) {
+      const dots = dotsWrap.querySelectorAll('.carousel-indicator');
+      dots.forEach((d, k) => d.classList.toggle('active', k === index));
+    }
+  }
+
+  // hook buttons
+  if (btnPrev) btnPrev.addEventListener('click', () => goTo(index - 1));
+  if (btnNext) btnNext.addEventListener('click', () => goTo(index + 1));
+
+  // hook dots
+  if (dotsWrap) {
+    // if dot count mismatches, rebuild to match slides
+    const dots = dotsWrap.querySelectorAll('.carousel-indicator');
+    if (dots.length !== slides.length) {
+      dotsWrap.innerHTML = '';
+      slides.forEach((_, k) => {
+        const b = document.createElement('button');
+        b.className = `carousel-indicator${k === index ? ' active' : ''}`;
+        b.setAttribute('aria-label', `Go to slide ${k + 1}`);
+        b.dataset.slide = String(k);
+        dotsWrap.appendChild(b);
+      });
+    }
+    dotsWrap.addEventListener('click', (e) => {
+      const btn = e.target.closest('.carousel-indicator');
+      if (!btn) return;
+      const i = Number(btn.dataset.slide || 0);
+      goTo(i);
+    });
+  }
+
+  // swipe support (touch)
+  let startX = 0, deltaX = 0, isDown = false;
+  viewEl.addEventListener('pointerdown', (e) => { isDown = true; startX = e.clientX; viewEl.setPointerCapture(e.pointerId); });
+  viewEl.addEventListener('pointermove', (e) => { if (isDown) deltaX = e.clientX - startX; });
+  viewEl.addEventListener('pointerup',   (e) => {
+    if (!isDown) return; isDown = false;
+    const threshold = Math.min(80, slideWidth() * 0.15);
+    if (deltaX >  threshold) goTo(index - 1);
+    else if (deltaX < -threshold) goTo(index + 1);
+    deltaX = 0;
+  });
+
+  // keep position on resize
+  window.addEventListener('resize', () => goTo(index));
+
+  // initial position
+  goTo(index);
+}
+
+// Kick off all carousels on this page
+document.addEventListener('DOMContentLoaded', () => {
+  initCarousel({
+    trackId: 'models-carousel-main',
+    prevId: 'carousel-prev-main',
+    nextId: 'carousel-next-main',
+    indicatorsId: 'carousel-indicators-main'
+  });
+
+  initCarousel({
+    trackId: 'models-carousel-bikes',
+    prevId: 'carousel-prev-bikes',
+    nextId: 'carousel-next-bikes',
+    indicatorsId: 'carousel-indicators-bikes'
+  });
+
+  initCarousel({
+    trackId: 'models-carousel-loaders',
+    prevId: 'carousel-prev-loaders',
+    nextId: 'carousel-next-loaders',
+    indicatorsId: 'carousel-indicators-loaders'
+  });
+});
+</script>
+
 </body>
 </html>
